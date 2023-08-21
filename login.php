@@ -1,28 +1,23 @@
 <?php
-Session_start();
+session_start();
 include("connect.php"); 
 
 
 if (isset($_POST['signin'])) {
     $Email = $_POST['your_name'];    // Update to use 'your_name'
     $Password = $_POST['your_pass']; // Update to use 'your_pass'
- 
 
-    $sql1 = "SELECT * FROM user WHERE email = '$Email' ;";
+    $sql1 = "SELECT * FROM user WHERE email = '$Email';";
     $result = mysqli_query($conn, $sql1);
-    
-if ($result){
+
     if ($row = mysqli_fetch_assoc($result)) {
-        
         $storedPasswordHash = $row['pass'];
         if (password_verify($Password, $storedPasswordHash) && $row['is_admin'] == 0) {
             $_SESSION['user_id'] = $row["user_id"]; // Store user ID in session
-            $_SESSION['isLogged']= true;
-            echo  '<h2>' . $_SESSION['isLogged'] . '</h2>';
-            header('location: index.php'); 
-            exit();  
+
+            header('location: index.php?err=true'); // Redirect to LandingPage.php
+            exit(); // Important to exit after redirect
         } else {
-            header("Location: login.php?err=true");
             $wrong1 = '<style type="text/css">
                     #i11, #one1{
                         display: inline;
@@ -35,8 +30,7 @@ if ($result){
                     </style>';
         }
     }
-    // header("Location: login.php?err=true");
-}
+    header("Location: login.php?err=true");
 }
 
 
@@ -100,7 +94,7 @@ include("nav.php") ;
                 <div class="row">
                     <div class="col-4">
                         <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <!-- <a href="signup.php" class="signup-image-link">Create an account</a> -->
+                        <a href="signup.php" class="signup-image-link">Create an account</a>
                     </div>
 
                     <div class="col-8">
@@ -110,7 +104,7 @@ include("nav.php") ;
                           <div class="alert alert-danger text-center"><?php echo "Login failed! Invalid email-id or password!"; ?></div>
                              <?php } ?>
                             <div class="form-group">
-                                <label for="email">Email<i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <label for="your_name">name<i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
                             </div>
                             <div class="form-group">
