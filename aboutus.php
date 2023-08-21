@@ -134,7 +134,7 @@ session_start();
                   <h5 class="mb-0">Rand Wageei</h5><span class="small text-uppercase text-muted">CEO - Founder <br>Our Creative Designer
                   </span>
                   <ul class="social mb-0 list-inline mt-3">
-                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/rand-wageei-2a3b38279/" target="_blank" class="social-link"><i class="fa fa-github"></i></a></li>
+                    <li class="list-inline-item"><a href="https://github.com/rand-wageei" target="_blank" class="social-link"><i class="fa fa-github"></i></a></li>
                     <li class="list-inline-item"><a href="https://www.linkedin.com/in/ghufran-almomani-777b93232" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
                   </ul>
                 </div>
