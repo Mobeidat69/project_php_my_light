@@ -1,7 +1,7 @@
 <?php
 include("connect.php"); 
 
-
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ include("connect.php");
 
 include("nav.php");
 $cat_id = $_GET['cat_id'];
-echo $cat_id;
+// echo $cat_id;
 ?>
 
 
