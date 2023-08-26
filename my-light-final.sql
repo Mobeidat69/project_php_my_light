@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2023 at 06:38 PM
+-- Generation Time: Aug 21, 2023 at 09:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,7 +57,10 @@ INSERT INTO `bill` (`id`, `user_id`, `date`, `total`) VALUES
 (22, 32, '2023-08-21 14:35:43', 300),
 (23, 17, '2023-08-21 14:49:04', 405),
 (24, 17, '2023-08-21 14:59:44', 1003),
-(25, 33, '2023-08-21 16:14:14', 1300);
+(25, 33, '2023-08-21 16:14:14', 1300),
+(26, 17, '2023-08-21 19:22:44', 645),
+(27, 17, '2023-08-21 19:26:09', 799),
+(28, 17, '2023-08-21 19:43:48', 1602);
 
 -- --------------------------------------------------------
 
@@ -83,16 +86,10 @@ INSERT INTO `cart` (`cart_id`, `product_id`, `quantity`, `user_id`) VALUES
 (58, 3, 1, 22),
 (59, 4, 13, 22),
 (63, 3, 1, 25),
-(115, 3, 6, 17),
-(116, 7, 1, 17),
 (121, 2, 1, 28),
 (122, 4, 1, 28),
 (123, 17, 1, 28),
-(124, 3, 1, 28),
-(125, 2, 2, 17),
-(126, 22, 1, 17),
-(127, 4, 1, 17),
-(128, 17, 1, 17);
+(124, 3, 1, 28);
 
 -- --------------------------------------------------------
 
@@ -103,18 +100,18 @@ INSERT INTO `cart` (`cart_id`, `product_id`, `quantity`, `user_id`) VALUES
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` text NOT NULL,
-  `category_image` text NOT NULL
+  `images` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`, `category_image`) VALUES
-(1, 'Pendant Lamps', '.\\Images\\cat1.png'),
-(2, 'LED Lighting Strips', '.\\Images\\cat6.png'),
-(3, 'Wall and Mirror Lamps', '.\\Images\\cat5.png'),
-(4, 'Floor and Task Lamps', '.\\Images\\cat3.png');
+INSERT INTO `categories` (`category_id`, `category_name`, `images`) VALUES
+(1, 'Pendant Lamps', './Images/ProductsImages/cat1.jpg'),
+(2, 'LED Lighting Strips', './Images/ProductsImages/cat2.png'),
+(3, 'Wall and Mirror Lamps', './Images/ProductsImages/cat3.png'),
+(4, 'Floor and Task Lamps', './Images/ProductsImages/cat4.png');
 
 -- --------------------------------------------------------
 
@@ -217,7 +214,26 @@ INSERT INTO `order` (`order_id`, `product_id`, `quantity`, `bill_id`) VALUES
 (80, 8, 1, 24),
 (81, 7, 1, 24),
 (82, 2, 6, 25),
-(83, 11, 4, 25);
+(83, 11, 4, 25),
+(84, 3, 6, 26),
+(85, 7, 1, 26),
+(86, 2, 2, 26),
+(87, 22, 1, 26),
+(88, 4, 1, 26),
+(89, 17, 1, 26),
+(90, 24, 1, 27),
+(91, 29, 4, 27),
+(92, 23, 1, 27),
+(93, 26, 1, 27),
+(94, 15, 7, 27),
+(95, 12, 2, 27),
+(96, 14, 2, 27),
+(97, 7, 2, 27),
+(98, 1, 2, 27),
+(99, 2, 2, 27),
+(100, 3, 2, 27),
+(101, 2, 12, 28),
+(102, 3, 6, 28);
 
 -- --------------------------------------------------------
 
@@ -276,16 +292,16 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `sale_status`, `sa
 (32, 3, 'Wall lamp, nickel-plated/white', 13.00, 0, 0.00, 'One of our most cherished lamp series and it’s no wonder why – it has a timeless design that fits right in. Combine several lamps from the series to create a soft, comfortable light and a unified look.', '.\\Images\\ProductsImages\\32.png', 'on stock'),
 (33, 3, 'LED wall lamp, dimmable chrome-plated/glossy, 47x14 cm', 59.00, 0, 0.00, 'Wall lamp in a modern art deco style with a built-in dimmable LED bulb. Full light to put on make-up or shave, and more diffused light to create a calm and comfy atmosphere, just like in a hotel bathroom.', '.\\Images\\ProductsImages\\33.png', 'on stock'),
 (34, 4, 'Work/wall lamp, black', 42.00, 0, 0.00, 'Metal, rugged constructions and timeless design – enjoy the SKURUP lamp series for a long time. Simple adjustments and different types of lamps make the series practical and flexible throughout the home.', '.\\Images\\ProductsImages\\34.png', 'on stock'),
-(35, 4, 'Work lamp, nickel-plated', 35.00, 0, 0.00, 'Classic style work lamp in steel that will brighten up your day. The arm and shade are adjustable which makes it a great lamp for reading by the desk, bed or sofa', '.\\Images\\ProductsImages\\35.png', 'on stock\r\n'),
-(36, 4, 'Work lamp, black', 14.00, 0, 0.00, 'Metal, rugged constructions and timeless design – enjoy the SKURUP lamp series for a long time. Simple adjustments and different types of lamps make the series practical and flexible throughout the home', '.\\Images\\ProductsImages\\36.png', 'on stock'),
-(37, 4, 'LED floor lamp, smart black', 99.00, 0, 0.00, 'PILSKOTT floor lamp has a modern graphic shape and a bended LED strip that creates dynamic light effects. You can also dim it wirelessly with the IKEA Home smart app and TRÅDFRI remote control.', '.\\Images\\ProductsImages\\37.png', 'on stock'),
-(38, 4, 'LED floor lamp, black', 89.00, 0, 0.00, 'This sculptural LED floor lamp spreads an atmospheric light reminiscent of light at a live concert. Designed in collaboration with the pros from Swedish House Mafia and part of the OBEGRÄNSAD collection.', '.\\Images\\ProductsImages\\38.png', 'on stock'),
-(39, 4, 'Work lamp, black', 9.00, 0, 0.00, 'A neat lamp with a rotatable head that you can direct as you like. Ready to light up your book or magazine, day or night. Perfect to have by the armchair, bed or on the desk.', '.\\Images\\ProductsImages\\39.png', 'on stock'),
-(40, 4, 'Table lamp, nickel-plated/glass', 55.00, 0, 0.00, 'This table lamp with clean lines and a mouth-blown lampshade in frosted glass suits most styles and spreads a soft, pleasant light in your room.', '.\\Images\\ProductsImages\\40.png', 'on stock'),
-(41, 4, 'Work lamp with wireless charging, dark grey', 99.00, 0, 0.00, 'The simple, oversized metal shape is inspired by old lamps from places like factories and theatres. Used together, HEKTAR lamps support different activities and create a unified, rustic look in the room.', '.\\Images\\ProductsImages\\41.png', 'on stock'),
-(42, 4, 'Floor lamp, black brass/brass', 91.00, 0, 0.00, 'Brass-coloured base with clean lines and a black perforated shade on top that spreads a decorative pattern in the room when the lamp is on. Like the style? Decorate with more lamps from the same series.', '.\\Images\\ProductsImages\\42.png', 'on stock'),
-(43, 4, 'Floor/reading lamp, aluminium', 35.00, 0, 0.00, 'This floor lamp in aluminium is perfect to have by the sofa or your favourite armchair. You can easily direct the lamp arm so you get the light exactly where you want it when sitting down to read.', '.\\Images\\ProductsImages\\43.png', 'on stock'),
-(44, 4, 'Floor lamp, arched, beige/black', 182.00, 0, 0.00, 'This decorative lamp shade’s pattern is made of rope that winds over a textile-covered inside. A combination that creates exciting light effects in a room.', '.\\Images\\ProductsImages\\44.png', 'on stock');
+(35, 4, 'Work lamp, nickel-plated', 35.00, 0, 0.00, 'Classic style work lamp in steel that will brighten up your day. The arm and shade are adjustable which makes it a great lamp for reading by the desk, bed or sofa', './Images/ProductsImages/10.png', 'on stock\r\n'),
+(36, 4, 'Work lamp, black', 14.00, 0, 0.00, 'Metal, rugged constructions and timeless design – enjoy the SKURUP lamp series for a long time. Simple adjustments and different types of lamps make the series practical and flexible throughout the home', './Images/ProductsImages/9.png', 'on stock'),
+(37, 4, 'LED floor lamp, smart black', 99.00, 0, 0.00, 'PILSKOTT floor lamp has a modern graphic shape and a bended LED strip that creates dynamic light effects. You can also dim it wirelessly with the IKEA Home smart app and TRÅDFRI remote control.', './Images/ProductsImages/8.png', 'on stock'),
+(38, 4, 'LED floor lamp, black', 89.00, 0, 0.00, 'This sculptural LED floor lamp spreads an atmospheric light reminiscent of light at a live concert. Designed in collaboration with the pros from Swedish House Mafia and part of the OBEGRÄNSAD collection.', './Images/ProductsImages/7.png', 'on stock'),
+(39, 4, 'Work lamp, black', 9.00, 0, 0.00, 'A neat lamp with a rotatable head that you can direct as you like. Ready to light up your book or magazine, day or night. Perfect to have by the armchair, bed or on the desk.', './Images/ProductsImages/6.png', 'on stock'),
+(40, 4, 'Table lamp, nickel-plated/glass', 55.00, 0, 0.00, 'This table lamp with clean lines and a mouth-blown lampshade in frosted glass suits most styles and spreads a soft, pleasant light in your room.', './Images/ProductsImages/5.png', 'on stock'),
+(41, 4, 'Work lamp with wireless charging, dark grey', 99.00, 0, 0.00, 'The simple, oversized metal shape is inspired by old lamps from places like factories and theatres. Used together, HEKTAR lamps support different activities and create a unified, rustic look in the room.', './Images/ProductsImages/4.png', 'on stock'),
+(42, 4, 'Floor lamp, black brass/brass', 91.00, 0, 0.00, 'Brass-coloured base with clean lines and a black perforated shade on top that spreads a decorative pattern in the room when the lamp is on. Like the style? Decorate with more lamps from the same series.', './Images/ProductsImages/3.png', 'on stock'),
+(43, 4, 'Floor/reading lamp, aluminium', 35.00, 0, 0.00, 'This floor lamp in aluminium is perfect to have by the sofa or your favourite armchair. You can easily direct the lamp arm so you get the light exactly where you want it when sitting down to read.', './Images/ProductsImages/2.png', 'on stock'),
+(44, 4, 'Floor lamp, arched, beige/black', 182.00, 0, 0.00, 'This decorative lamp shade’s pattern is made of rope that winds over a textile-covered inside. A combination that creates exciting light effects in a room.', './Images/ProductsImages/1.png', 'on stock');
 
 -- --------------------------------------------------------
 
@@ -313,7 +329,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `mobile`, `pass`, `datee`, `is_admin`, `is_delete`, `user_img`) VALUES
 (17, 'maha', 'yaseen', '12345@gmail.com', 2147483647, '$2y$10$N/Ea4jGyB5JR6grgsLUn5.BE3ogDBnWh5bqQkIrOR7z.PaUMtZUny', '1995-03-31', 0, 0, ''),
 (19, 'mohammad', 'yaseen', 'ss@gmail.com', 2147483647, '$2y$10$f9nNps5AeFbs0gwb4rjHNuG7wVmfgPIiuCaF0IRCvNn61dJsmttyG', '2000-02-21', 0, 1, ''),
-(20, 'sara', 'yaseen', 'sss@gmail.com', 788888888, '53bfef360f0c4e9d70cc1e6b262e24f1', '1990-08-16', 1, 0, ''),
+(20, 'sara', 'yaseen', 'sss@gmail.com', 788888888, '53bfef360f0c4e9d70cc1e6b262e24f1', '1990-08-16', 0, 0, ''),
 (21, 'moh', 'roa', 'somiayaseen59@gmail.com', 1234567899, '$2y$10$euqGCzhx0cPSC0CZIijrs.8QLpVCklb5UhmrwZ5NSg4fnVPMfXKjG', '0000-00-00', 0, 0, ''),
 (22, 'eee', 'moh', 'eee@gmail.com', 1234567899, '$2y$10$FSvYAR4xfnClNCWnrXYLN.qqPl..n5nKgA8tAnfY7UaMBKgVj98ie', '0000-00-00', 0, 0, ''),
 (23, 'eee', 'moh', 'eee@gmail.com', 1234567899, '$2y$10$ko/.anNSXpenaLMte1N9Q.QYJD2n7hJm.t4tnft65A0HkpKcY3FBy', '0000-00-00', 0, 0, ''),
@@ -326,7 +342,7 @@ INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `mobile`, `pa
 (30, 'snaa', 'sanaa', 'zxcv@gmail.com', 2147483647, '$2y$10$Zmxdirw1mvBLny86LOs3Je7bni0081LDaj9m0CNGVQXlR5bikeq9u', '0000-00-00', 0, 0, ''),
 (31, 'asedrfg', 'asdfgh', 'awsdfv@gmail.com', 2147483647, '$2y$10$UM6cRyiN63hpyEhUIb1OZu3WRfwX1C4uQUoImvJv6rc.BRpj7nkGu', '0000-00-00', 0, 0, ''),
 (32, 'sara', 'arhjjr', 'qwwerr@gmail.com', 2147483647, '$2y$10$yq4hzUo31vFNb8b6IPgRKuR7td995jDdKhjUiswTv4P37Ul.dlWS6', '0000-00-00', 0, 0, ''),
-(33, 'dara', 'mona', 'sara@gmail.com', 2147483647, '$2y$10$/vi3u7BDeI00AtM1oH0ArevDObvWZx1zq392VGcuVflVTqqd71Tke', '0000-00-00', 0, 0, '');
+(33, 'dara', 'mona', 'sara@gmail.com', 2147483647, '$2y$10$/vi3u7BDeI00AtM1oH0ArevDObvWZx1zq392VGcuVflVTqqd71Tke', '0000-00-00', 1, 0, '');
 
 --
 -- Indexes for dumped tables
@@ -389,13 +405,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -419,7 +435,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `products`
