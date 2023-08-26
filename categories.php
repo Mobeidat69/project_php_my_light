@@ -160,12 +160,12 @@ $cat_id = $_GET['cat_id'];
                   <h6 class="price">
                       <strong>' . $row["price"] . '  </strong> 
                        </h6>
+                       
                </div>
             </div>
                           
                           
-                          
-                          ';
+               ';
             }
         }
     }

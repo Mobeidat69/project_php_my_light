@@ -191,6 +191,10 @@
                             <a href="products.php">
                                 <i class="far fa-check-square"></i>Products</a>
                         </li>
+                        <li>
+                            <a href="orders.php">
+                                <i class="far fa-check-square"></i>Orders</a>
+                        </li>
                   
                     </ul>
                 </nav>
