@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // var savedOption = localStorage.getItem('selectedOption_' + counter);
     // if (savedOption) {
     //   select.value = savedOption;
-    //   select.dispatchEvent(new Event('change'));
+    //  // select.dispatchEvent(new Event('change'));
     // }
   });
 });
