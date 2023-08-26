@@ -1,9 +1,8 @@
 <?php
 session_start();
-include_once 'include/connect.php';
+require 'include/connect.php';
 
 
-echo '<h1>'. $_SESSION['isAdmin'] . '</h1>';
     if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] !== true) {
         header('Location: login.php');
         exit();
@@ -12,10 +11,7 @@ echo '<h1>'. $_SESSION['isAdmin'] . '</h1>';
         $isGood=$_SESSION['isAdmin'];
     }
      
-    if($isGood){
-        $fname=$_SESSION['fname'];
-        $email=$_SESSION['email'];
-    }
+
 
 $display='none';
 $display1= "none";
@@ -72,8 +68,16 @@ if(isset($_POST["adding"])){
 
 if(isset($_POST["addnewcat"])){
     $newcatname= $_POST['newcatname'];
-    $query2= "INSERT INTO categories(category_name)
-    VALUES('$newcatname');";
+    $file_name = $_FILES["file"]["name"];
+    $file_type = $_FILES["file"]["type"];
+    $file_size = $_FILES["file"]["size"];
+    $file_tem = $_FILES["file"]["tmp_name"];
+    $file_store = "./Images/ProductsImages/" . $file_name;
+    // echo $file_store;
+    move_uploaded_file($file_tem, $file_store);
+
+    $query2= "INSERT INTO categories (category_name,images)
+    VALUES('$newcatname','$file_store');";
     $run2= mysqli_query($conn , $query2); 
     $display1= 'none';
 }
@@ -135,11 +139,14 @@ $resultcheck = mysqli_num_rows($run);
                         </form>
                     </div>
                     <div id="adddiv" style="display: <?php echo $display1?>;">
-                        <form method="post">
-                            <label>Category Name:</label>
-                            <input type="text" class="border"name="newcatname" required>
+                        <form method="post" enctype="multipart/form-data">
                             
-                            <input type="submit" class="btn btn-outline-success" value="Add" name="addnewcat">
+                            <label>Category Name:</label>
+                            <input type="text" class="border"name="newcatname" required><br>
+                            <label>Change Image:</label>
+                            <input type="file" name="file" id="file" required>
+                            <br>
+                            <input type="submit" class="btn px-5 btn-outline-success" value="Add" name="addnewcat">
                         </form>
                     </div>
                 

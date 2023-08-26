@@ -154,7 +154,7 @@ $resultcheck = mysqli_num_rows($run);
                             </div>
                             <div class="col mb-4">
                                 <form method="post">
-                                    <input type="submit" class="btn btn-outline-secondary" value="Add New Category" name="adding" required>
+                                    <input type="submit" class="btn btn-outline-secondary" value="Add New Products" name="adding" required>
                                 </form>
                             </div>
                             <div class="col mb-4">
